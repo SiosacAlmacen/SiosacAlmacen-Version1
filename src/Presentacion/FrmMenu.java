@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package Presentacion;
 
-import Controlador.ControlEmpleado;
-import Modelo.Empleado;
-import Modelo.EmpleadoDAO;
+import Presentacion.FrmEmpleado;
+import Presentacion.ControlEmpleado;
+import Negocio.Empleado;
+import Persistencia.EmpleadoDAOImp;
 
 /**
  *

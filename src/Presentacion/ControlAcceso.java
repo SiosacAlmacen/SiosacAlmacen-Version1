@@ -1,17 +1,15 @@
 
-package Controlador;
+package Presentacion;
 
-import Modelo.Empleado;
-import Modelo.EmpleadoDAO;
-import Vistas.FrmEmpleado;
-import Vistas.*;
+import Negocio.Empleado;
+import Persistencia.EmpleadoDAOImp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 public class ControlAcceso implements ActionListener {
      //instanciamos los objetos 
-     EmpleadoDAO empDAO=new EmpleadoDAO();
+     EmpleadoDAOImp empDAO=new EmpleadoDAOImp();
      Empleado emp=new Empleado();
      FrmLogin frmlog=new FrmLogin();
      FrmEmpleado frmemp=new FrmEmpleado();
@@ -50,6 +48,5 @@ public class ControlAcceso implements ActionListener {
           System.out.println("acceso denegado");
       }
     }
-    
 
 }

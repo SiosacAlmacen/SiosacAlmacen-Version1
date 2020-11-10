@@ -1,8 +1,8 @@
 
-package Controlador;
+package Presentacion;
 
-import Modelo.*;
-import Vistas.*;
+import Persistencia.EmpleadoDAOImp;
+import Negocio.Empleado;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -13,7 +13,7 @@ import javax.swing.table.*;
 
 public class ControlEmpleado implements ActionListener{
     //instanciamos los objetos 
-     EmpleadoDAO empDAO=new EmpleadoDAO();
+     EmpleadoDAOImp empDAO=new EmpleadoDAOImp();
      Empleado emp=new Empleado();
      FrmEmpleado frmemp=new FrmEmpleado();
     //establecemos el modelo para el table
@@ -66,10 +66,6 @@ public class ControlEmpleado implements ActionListener{
     
     
     }
-    
-    
-   
-    
     
     
     //METODOS CRUD

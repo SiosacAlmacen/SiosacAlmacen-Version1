@@ -1,5 +1,5 @@
 
-package Modelo;
+package Negocio;
 
 
 public class Empleado {

@@ -1,20 +1,22 @@
 
-package Modelo;
+package Persistencia;
 
+import Persistencia.Conexion;
+import Negocio.Empleado;
 import java.util.*;
 import java.sql.*;
 
 
-public class EmpleadoDAO {
+public class EmpleadoDAOImp implements EmpleadoDAO {
  Conexion con = new Conexion();
  Connection cn;
  PreparedStatement pst;
  ResultSet rs;
  int result = 0;
  String quitar=null;
- 
-  public int Create(Empleado emp) {
-     //preparamos la sentencia
+    @Override
+    public int Create(Empleado emp) {
+        //preparamos la sentencia
      String sql="Insert into empleado (cod_empleado,nombre,apellido,especialidad,user,pass) values(?,?,?,?,?,?)";
      try {
          cn=con.getConexion();
@@ -34,11 +36,12 @@ public class EmpleadoDAO {
              
           } catch (Exception e) {
           }
-     return result;
- }
- 
- public List Read() {
-     List<Empleado> datos=new ArrayList<>();
+     return result;  
+    }
+
+    @Override
+    public List Read() {
+          List<Empleado> datos=new ArrayList<>();
      //preparamos la sentencia
      String sql="Select * from empleado";
      try {
@@ -59,12 +62,12 @@ public class EmpleadoDAO {
          }
      } catch (Exception e) {
      }
-     return datos;
- }
- 
- 
-   public int Update(Empleado emp) {
-     //preparamos la sentencia
+     return datos; 
+    }
+
+    @Override
+    public int Update(Empleado emp) {
+          //preparamos la sentencia
      String sql="update empleado set nombre=?, apellido=?, especialidad=?, user=?, pass=? where cod_empleado=?";
      try {
          cn=con.getConexion();
@@ -86,10 +89,11 @@ public class EmpleadoDAO {
           } catch (Exception e) {
           }
      return result;
- }
-   
-      public String Delete(String codigo) {
-     //preparamos la sentencia
+    }
+
+    @Override
+    public String Delete(String codigo) {
+          //preparamos la sentencia
      String sql="delete from empleado where cod_empleado='"+codigo+"'";
      try {
          cn=con.getConexion();
@@ -103,11 +107,12 @@ public class EmpleadoDAO {
              
           } catch (Exception e) {
           }
-     return quitar;
- }
-   
-   public Empleado validarEmpleado(String user,String pass) {    
-       List lista=Read();
+     return quitar; 
+    }
+
+    @Override
+    public Empleado validarEmpleado(String user, String pass) {
+           List lista=Read();
        if (lista!=null) {
            for (int i = 0; i < lista.size(); i++) {
                Empleado emp=(Empleado)lista.get(i);
@@ -119,6 +124,7 @@ public class EmpleadoDAO {
            System.out.println("Empleado no encontrado");
        }
        return null;
-   }
+    }
+
 
 }
