@@ -5,6 +5,7 @@ import Persistencia.Conexion;
 import Negocio.Empleado;
 import java.util.*;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 
 public class EmpleadoDAOImp implements EmpleadoDAO {
@@ -17,7 +18,7 @@ public class EmpleadoDAOImp implements EmpleadoDAO {
     @Override
     public int Create(Empleado emp) {
         //preparamos la sentencia
-     String sql="Insert into empleado (cod_empleado,nombre,apellido,especialidad,user,pass) values(?,?,?,?,?,?)";
+     String sql="Insert into empleado (cod_empleado,nombre,apellido,especialidad,usuario,contraseña) values(?,?,?,?,?,?)";
      try {
          cn=con.getConexion();
          pst=cn.prepareStatement(sql);
@@ -60,7 +61,8 @@ public class EmpleadoDAOImp implements EmpleadoDAO {
             datos.add(emp);
              
          }
-     } catch (Exception e) {
+     } catch (SQLException e) {
+         JOptionPane.showMessageDialog(null,"error:"+e);
      }
      return datos; 
     }

@@ -11,6 +11,7 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        this.setLocationRelativeTo(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -91,7 +92,6 @@ public class FrmLogin extends javax.swing.JFrame {
       FrmLogin frmlog=new FrmLogin();
       ControlAcceso conACC=new ControlAcceso(frmlog);
       frmlog.setVisible(true);
-      frmlog.setLocationRelativeTo(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

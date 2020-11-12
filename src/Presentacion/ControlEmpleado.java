@@ -70,6 +70,7 @@ public class ControlEmpleado implements ActionListener{
     
     //METODOS CRUD
      public void Create()  {
+  
     String codigo=frmemp.txtcodigo.getText();
     String nombre=frmemp.txtnombre.getText();
     String apellido=frmemp.txtapellido.getText();
@@ -89,7 +90,9 @@ public class ControlEmpleado implements ActionListener{
         JOptionPane.showMessageDialog(null,"Registro exitoso");
     }else{  
         JOptionPane.showMessageDialog(null,"No se registró");
-    }
+    }   
+        
+
     }
     
     

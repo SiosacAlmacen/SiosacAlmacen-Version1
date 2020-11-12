@@ -9,6 +9,7 @@ import Presentacion.FrmEmpleado;
 import Presentacion.ControlEmpleado;
 import Negocio.Empleado;
 import Persistencia.EmpleadoDAOImp;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,23 +40,23 @@ public class FrmMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
+        salir = new javax.swing.JMenuItem();
+        acerca = new javax.swing.JMenuItem();
+        cerrarsesion = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        gempleado = new javax.swing.JMenuItem();
+        gcliente = new javax.swing.JMenuItem();
+        gproveedor = new javax.swing.JMenuItem();
+        gmaterial = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        ingreso = new javax.swing.JMenuItem();
+        salida = new javax.swing.JMenuItem();
+        visual = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        ringreso = new javax.swing.JMenuItem();
+        rsalida = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
+        fondo = new javax.swing.JMenuItem();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -145,20 +146,25 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenu1.setText("Opciones");
         jMenu1.setFont(new java.awt.Font("Eras Demi ITC", 1, 14)); // NOI18N
 
-        jMenuItem8.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/salirico.png"))); // NOI18N
-        jMenuItem8.setText("Salir");
-        jMenu1.add(jMenuItem8);
+        salir.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/salirico.png"))); // NOI18N
+        salir.setText("Salir");
+        jMenu1.add(salir);
 
-        jMenuItem12.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/acerico.png"))); // NOI18N
-        jMenuItem12.setText("Acerca de");
-        jMenu1.add(jMenuItem12);
+        acerca.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        acerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/acerico.png"))); // NOI18N
+        acerca.setText("Acerca de");
+        jMenu1.add(acerca);
 
-        jMenuItem14.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/logico.png"))); // NOI18N
-        jMenuItem14.setText("Cerrar Sesión");
-        jMenu1.add(jMenuItem14);
+        cerrarsesion.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        cerrarsesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/logico.png"))); // NOI18N
+        cerrarsesion.setText("Cerrar Sesión");
+        cerrarsesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarsesionActionPerformed(evt);
+            }
+        });
+        jMenu1.add(cerrarsesion);
 
         jMenuBar1.add(jMenu1);
 
@@ -166,35 +172,35 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenu2.setText("Mantenimiento");
         jMenu2.setFont(new java.awt.Font("Eras Demi ITC", 1, 14)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/empleadoico.png"))); // NOI18N
-        jMenuItem1.setText("Gestión Empleado");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        gempleado.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        gempleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/empleadoico.png"))); // NOI18N
+        gempleado.setText("Gestión Empleado");
+        gempleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                gempleadoActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(gempleado);
 
-        jMenuItem2.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/clienteico.png"))); // NOI18N
-        jMenuItem2.setText("Gestión Cliente");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        gcliente.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        gcliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/clienteico.png"))); // NOI18N
+        gcliente.setText("Gestión Cliente");
+        gcliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                gclienteActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu2.add(gcliente);
 
-        jMenuItem3.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/proveico.png"))); // NOI18N
-        jMenuItem3.setText("Gestión Proveedor");
-        jMenu2.add(jMenuItem3);
+        gproveedor.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        gproveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/proveico.png"))); // NOI18N
+        gproveedor.setText("Gestión Proveedor");
+        jMenu2.add(gproveedor);
 
-        jMenuItem4.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/materialico.png"))); // NOI18N
-        jMenuItem4.setText("Gestión Materiales");
-        jMenu2.add(jMenuItem4);
+        gmaterial.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        gmaterial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/materialico.png"))); // NOI18N
+        gmaterial.setText("Gestión Materiales");
+        jMenu2.add(gmaterial);
 
         jMenuBar1.add(jMenu2);
 
@@ -202,20 +208,20 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenu4.setText("Almacén");
         jMenu4.setFont(new java.awt.Font("Eras Demi ITC", 1, 14)); // NOI18N
 
-        jMenuItem5.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/entradaico.png"))); // NOI18N
-        jMenuItem5.setText("Ingresos");
-        jMenu4.add(jMenuItem5);
+        ingreso.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        ingreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/entradaico.png"))); // NOI18N
+        ingreso.setText("Ingresos");
+        jMenu4.add(ingreso);
 
-        jMenuItem6.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/salidaico.png"))); // NOI18N
-        jMenuItem6.setText("Salidas");
-        jMenu4.add(jMenuItem6);
+        salida.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        salida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/salidaico.png"))); // NOI18N
+        salida.setText("Salidas");
+        jMenu4.add(salida);
 
-        jMenuItem7.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/Boxes-Self_35539.png"))); // NOI18N
-        jMenuItem7.setText("Visualizador");
-        jMenu4.add(jMenuItem7);
+        visual.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        visual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/Boxes-Self_35539.png"))); // NOI18N
+        visual.setText("Visualizador");
+        jMenu4.add(visual);
 
         jMenuBar1.add(jMenu4);
 
@@ -223,15 +229,15 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenu5.setText("Informes");
         jMenu5.setFont(new java.awt.Font("Eras Demi ITC", 1, 14)); // NOI18N
 
-        jMenuItem10.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/business_table_order_report_history_2332.png"))); // NOI18N
-        jMenuItem10.setText("Reporte ingresos");
-        jMenu5.add(jMenuItem10);
+        ringreso.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        ringreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/business_table_order_report_history_2332.png"))); // NOI18N
+        ringreso.setText("Reporte ingresos");
+        jMenu5.add(ringreso);
 
-        jMenuItem11.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/business_table_order_report_history_2332.png"))); // NOI18N
-        jMenuItem11.setText("Reporte salidas");
-        jMenu5.add(jMenuItem11);
+        rsalida.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        rsalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/business_table_order_report_history_2332.png"))); // NOI18N
+        rsalida.setText("Reporte salidas");
+        jMenu5.add(rsalida);
 
         jMenuBar1.add(jMenu5);
 
@@ -239,10 +245,10 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenu6.setText("Configuración");
         jMenu6.setFont(new java.awt.Font("Eras Demi ITC", 1, 14)); // NOI18N
 
-        jMenuItem13.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
-        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/mac_icon-icons.com_54610.png"))); // NOI18N
-        jMenuItem13.setText("Fondo de Pantalla");
-        jMenu6.add(jMenuItem13);
+        fondo.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/mac_icon-icons.com_54610.png"))); // NOI18N
+        fondo.setText("Fondo de Pantalla");
+        jMenu6.add(fondo);
 
         jMenuBar1.add(jMenu6);
 
@@ -262,16 +268,29 @@ public class FrmMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void gempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gempleadoActionPerformed
+    
+    }//GEN-LAST:event_gempleadoActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void gclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gclienteActionPerformed
        
         FrmEmpleado pc=new FrmEmpleado();
         ControlEmpleado conEMP=new ControlEmpleado(pc);
         pc.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_gclienteActionPerformed
+
+    private void cerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarsesionActionPerformed
+        int opcion=JOptionPane.showConfirmDialog(null,"Desea cerrar Sesión ?","Cerrar Sesión",JOptionPane.YES_NO_OPTION,1);
+        if (opcion==JOptionPane.YES_OPTION) {
+        FrmLogin pc=new FrmLogin();
+        ControlAcceso conAcc=new ControlAcceso(pc);
+        pc.setVisible(true);
+        this.dispose();  
+        }else   {
+            
+        }
+   
+    }//GEN-LAST:event_cerrarsesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,6 +325,14 @@ public class FrmMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem acerca;
+    private javax.swing.JMenuItem cerrarsesion;
+    private javax.swing.JMenuItem fondo;
+    private javax.swing.JMenuItem gcliente;
+    private javax.swing.JMenuItem gempleado;
+    private javax.swing.JMenuItem gmaterial;
+    private javax.swing.JMenuItem gproveedor;
+    private javax.swing.JMenuItem ingreso;
     public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -315,19 +342,6 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -335,5 +349,10 @@ public class FrmMenu extends javax.swing.JFrame {
     public javax.swing.JLabel lbl;
     public javax.swing.JLabel lblcod;
     public javax.swing.JLabel lblnon;
+    private javax.swing.JMenuItem ringreso;
+    private javax.swing.JMenuItem rsalida;
+    private javax.swing.JMenuItem salida;
+    private javax.swing.JMenuItem salir;
+    private javax.swing.JMenuItem visual;
     // End of variables declaration//GEN-END:variables
 }
