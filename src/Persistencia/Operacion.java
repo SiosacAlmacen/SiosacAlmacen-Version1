@@ -40,15 +40,19 @@ public static List listar(String sql)   {
             String[]titCol=new String[numCol];
             for (int i = 0; i < numCol; i++) {
                 titCol[i]=rm.getColumnName(i+1);
-                lista.add(titCol);
+                
             }
+            
+            lista.add(titCol);
             
             while (rs.next()) {
                Object[]fila=new Object[numCol];
                 for (int i = 0; i < numCol; i++) {
                     fila[i]=rs.getObject(i+1);
-                    lista.add(fila);     
+                        
                 }
+                
+                lista.add(fila); 
                 
             }
             cn.close();
