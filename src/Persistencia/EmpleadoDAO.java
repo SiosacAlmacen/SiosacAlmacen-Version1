@@ -11,5 +11,5 @@ public interface EmpleadoDAO {
  public List Read();
  public int Update(Empleado emp);
  public String Delete(String codigo);   
-  public Empleado validarEmpleado(String user,String pass);
+ public Empleado validarEmpleado(String user,String pass);
 }
