@@ -11,22 +11,22 @@ package Negocio;
  */
 public class Categoria {
     
-    private String codigo;
+    private int codigo;
     private String nombre;
 
     public Categoria() {
     }
 
-    public Categoria(String codigo, String nombre) {
+    public Categoria(int codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
     }
-    
-    public String getCodigo() {
+
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
