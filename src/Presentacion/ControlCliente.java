@@ -12,7 +12,7 @@ import javax.swing.table.*;
 
 
 public class ControlEmpleado implements ActionListener{
-    //instanciamos los objetos 
+    //instanciamos los objetos
      EmpleadoDAOImp empDAO=new EmpleadoDAOImp();
      Empleado emp=new Empleado();
      FrmEmpleado frmemp=new FrmEmpleado();
@@ -28,8 +28,8 @@ public class ControlEmpleado implements ActionListener{
         this.frmemp.btnregistrar.addActionListener(this);
         this.frmemp.btnlimpiar.addActionListener(this);
         Read(frmemp.tabla);
-    } 
-    
+    }
+
     //--CONTROLADOR DE BOTONES--
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -42,9 +42,9 @@ public class ControlEmpleado implements ActionListener{
         CleanTable();
         Read(frmemp.tabla);
     }
-    
+
     if(ae.getSource() == frmemp.btneditar)  {
-      Edit();  
+      Edit();
     }
     if(ae.getSource() == frmemp.btnactualizar)  {
         Update();
@@ -57,48 +57,48 @@ public class ControlEmpleado implements ActionListener{
        CleanTable();
        Read(frmemp.tabla);
     }
-    
+
     if(ae.getSource() == frmemp.btnlimpiar )    {
      Clean();
-    }   
-    
-    
-    
-    
     }
-    
-    
+
+
+
+
+    }
+
+
     //METODOS CRUD
      public void Create()  {
-  
+
     String codigo=frmemp.txtcodigo.getText();
     String nombre=frmemp.txtnombre.getText();
     String apellido=frmemp.txtapellido.getText();
     String especialidad=frmemp.txtespecialidad.getText();
     String user=frmemp.txtuser.getText();
     String pass=frmemp.txtpass.getText();
-    
+
     emp.setCodigo(codigo);
     emp.setNombre(nombre);
     emp.setApellido(apellido);
     emp.setEspecialidad(especialidad);
     emp.setUser(user);
     emp.setPass(pass);
-    
+
     int result=empDAO.Create(emp);
-    if (result == 1) {  
+    if (result == 1) {
         JOptionPane.showMessageDialog(null,"Registro exitoso");
-    }else{  
+    }else{
         JOptionPane.showMessageDialog(null,"No se registró");
-    }   
-        
+    }
+
 
     }
-    
-    
+
+
     public void Read(JTable jtable)  {
       centrarCeldas(jtable);
-        
+
      model = (DefaultTableModel)jtable.getModel();
      List<Empleado> lista= empDAO.Read();
      Object[] object= new Object[6];
@@ -113,40 +113,40 @@ public class ControlEmpleado implements ActionListener{
         }
        frmemp.tabla.setModel(model);
     }
-    
+
     public void Update()  {
         if (frmemp.txtcodigo.getText().equals("")) {
             JOptionPane.showMessageDialog(null,"Elija un registro a actualizar");
         }else   {
-            
+
         }
-    
+
     String codigo=frmemp.txtcodigo.getText();
     String nombre=frmemp.txtnombre.getText();
     String apellido=frmemp.txtapellido.getText();
     String especialidad=frmemp.txtespecialidad.getText();
     String user=frmemp.txtuser.getText();
     String pass=frmemp.txtpass.getText();
-    
+
     emp.setCodigo(codigo);
     emp.setNombre(nombre);
     emp.setApellido(apellido);
     emp.setEspecialidad(especialidad);
     emp.setUser(user);
     emp.setPass(pass);
-    
+
     int result=empDAO.Update(emp);
-    
-    if (result == 1) {  
+
+    if (result == 1) {
         JOptionPane.showMessageDialog(null,"Actualizado");
-    }else{  
+    }else{
         JOptionPane.showMessageDialog(null,"No se actualizó");
     }
     CleanTable();
     }
-    
+
     public void Delete()  {
-    
+
         int element = frmemp.tabla.getSelectedRow();
         if (element == -1) {
             JOptionPane.showMessageDialog(frmemp,"Seleccione el registro a eliminar");
@@ -156,31 +156,31 @@ public class ControlEmpleado implements ActionListener{
             JOptionPane.showMessageDialog(frmemp, "Registro eliminado");
         }
     }
-    
-    
-    
-    
+
+
+
+
     //METODOS ADICIONALES
-    
+
     void centrarCeldas(JTable jtable)   {
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        
+
         for (int i = 0; i < frmemp.tabla.getColumnCount(); i++) {
             frmemp.tabla.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
     }
-    
+
     //metodo para limpiar
-    void CleanTable() { 
+    void CleanTable() {
         for (int i = 0; i < frmemp.tabla.getRowCount(); i++) {
             model.removeRow(i);
             i = i-1;
-            
+
         }
     }
-    
-    void Edit(){    
+
+    void Edit(){
         int element= frmemp.tabla.getSelectedRow();
         if (element == -1) {
             JOptionPane.showMessageDialog(null,"Seleccione un registro a editar");
@@ -197,10 +197,10 @@ public class ControlEmpleado implements ActionListener{
          frmemp.txtespecialidad.setText(""+elementESP);
          frmemp.txtuser.setText(""+elementUSER);
          frmemp.txtpass.setText(""+elementPASS);
-         
+
         }
     }
-    
+
     void Clean()    {
      frmemp.txtcodigo.setText("");
      frmemp.txtapellido.setText("");
@@ -209,7 +209,7 @@ public class ControlEmpleado implements ActionListener{
      frmemp.txtuser.setText("");
      frmemp.txtpass.setText("");
      frmemp.txtcodigo.requestFocus();
-     
+
     }
-    
+
 }

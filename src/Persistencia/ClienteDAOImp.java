@@ -34,10 +34,10 @@ public class EmpleadoDAOImp implements EmpleadoDAO {
             }else   {
              return 0;
             }
-             
+
           } catch (Exception e) {
           }
-     return result;  
+     return result;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class EmpleadoDAOImp implements EmpleadoDAO {
          pst=cn.prepareStatement(sql);
          rs=pst.executeQuery();
          while (rs.next()) {
-            //instanciamos el objeto emp de la clase empleado 
+            //instanciamos el objeto emp de la clase empleado
             Empleado emp=new Empleado();
             emp.setCodigo(rs.getString(1));
             emp.setNombre(rs.getString(2));
@@ -59,12 +59,12 @@ public class EmpleadoDAOImp implements EmpleadoDAO {
             emp.setUser(rs.getString(5));
             emp.setPass(rs.getString(6));
             datos.add(emp);
-             
+
          }
      } catch (SQLException e) {
          JOptionPane.showMessageDialog(null,"error:"+e);
      }
-     return datos; 
+     return datos;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class EmpleadoDAOImp implements EmpleadoDAO {
      try {
          cn=con.getConexion();
          pst=cn.prepareStatement(sql);
-           
+
             pst.setString(1,emp.getNombre());
             pst.setString(2,emp.getApellido());
             pst.setString(3,emp.getEspecialidad());
@@ -87,7 +87,7 @@ public class EmpleadoDAOImp implements EmpleadoDAO {
             }else   {
              return 0;
             }
-             
+
           } catch (Exception e) {
           }
      return result;
@@ -106,10 +106,10 @@ public class EmpleadoDAOImp implements EmpleadoDAO {
          }else  {
               return "0";
           }
-             
+
           } catch (Exception e) {
           }
-     return quitar; 
+     return quitar;
     }
 
     @Override
@@ -120,7 +120,7 @@ public class EmpleadoDAOImp implements EmpleadoDAO {
                Empleado emp=(Empleado)lista.get(i);
                if(emp.getUser().equals(user) && emp.getPass().equals(pass)) {
                     return emp;
-               }   
+               }
            }
        }else    {
            System.out.println("Empleado no encontrado");

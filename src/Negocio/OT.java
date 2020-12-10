@@ -69,7 +69,7 @@ public class Empleado {
     public void setPass(String pass) {
         this.pass = pass;
     }
-   
-   
-    
+
+
+
 }
