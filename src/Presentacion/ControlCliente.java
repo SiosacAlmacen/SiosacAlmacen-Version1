@@ -20,7 +20,6 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.*;
 import javax.swing.table.*;
-import org.jdesktop.swingx.JXDatePicker;
 
 
 public class ControlCliente implements ActionListener{

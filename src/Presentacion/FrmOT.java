@@ -75,7 +75,7 @@ public class FrmOT extends javax.swing.JFrame {
         tablaot = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaOT = new javax.swing.JTable();
+        tablaT = new javax.swing.JTable();
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Registros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Eras Demi ITC", 1, 18))); // NOI18N
@@ -346,7 +346,7 @@ public class FrmOT extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Registros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Eras Demi ITC", 1, 18))); // NOI18N
 
-        tablaOT.setModel(new javax.swing.table.DefaultTableModel(
+        tablaT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -354,7 +354,7 @@ public class FrmOT extends javax.swing.JFrame {
                 "codigo", "empleado", "fecha de inicio", "fecha de entrega", "servicio", "dias", "descripcion"
             }
         ));
-        jScrollPane1.setViewportView(tablaOT);
+        jScrollPane1.setViewportView(tablaT);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -416,7 +416,7 @@ public class FrmOT extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerFE;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerFI;
-    private javax.swing.JTable tablaOT;
+    private javax.swing.JTable tablaT;
     public javax.swing.JTable tablacliente1;
     public javax.swing.JTable tablaot;
     private javax.swing.JTextArea txtadescripcion;
