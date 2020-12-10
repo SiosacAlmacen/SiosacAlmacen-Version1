@@ -5,7 +5,6 @@
  */
 package Presentacion;
 
-import Presentacion.ControlEmpleado;
 
 /**
  *

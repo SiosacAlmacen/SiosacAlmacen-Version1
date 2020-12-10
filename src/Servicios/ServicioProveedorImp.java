@@ -10,6 +10,7 @@ import Persistencia.ProveedorDao;
 import Persistencia.ProveedorDaoImp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,24 +28,20 @@ public class ServicioProveedorImp implements ServicioProveedor{
         daoPro = new ProveedorDaoImp();
     }
     
-    
-    
     @Override
     public String Create(String codigo, String nombre, String nombreEmpresa, String telefono, String correo, String fechaRegistro, String tipoProducto, String direccion) {
         Proveedor pro = new Proveedor();
-        try {
-            Date fecha =new SimpleDateFormat("dd/MM/yyyy").parse(fechaRegistro);
-            pro.setCodigo(codigo);
-            pro.setNombre(nombre);
-            pro.setNomEmpresa(nombreEmpresa);
-            pro.setTelefono(Integer.parseInt(telefono));
-            pro.setCorreo(correo);
-            pro.setFechaRegistro(fecha);
-            pro.setTipoProducto(tipoProducto);
-            pro.setDireccion(direccion);
-        } catch (ParseException ex) {
-            Logger.getLogger(ServicioProveedorImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Date f = new Date(Calendar.getInstance().getTime().getTime());
+        java.sql.Date fecha = new java.sql.Date(f.getTime());
+        
+        pro.setCodigo(codigo);
+        pro.setNombre(nombre);
+        pro.setNomEmpresa(nombreEmpresa);
+        pro.setTelefono(Integer.parseInt(telefono));
+        pro.setCorreo(correo);
+        pro.setFechaRegistro(fecha);
+        pro.setTipoProducto(tipoProducto);
+        pro.setDireccion(direccion);
         return daoPro.Create(pro);
     }
 
@@ -56,19 +53,16 @@ public class ServicioProveedorImp implements ServicioProveedor{
     @Override
     public String Update(String codigo, String nombre, String nombreEmpresa, String telefono, String correo, String fechaRegistro, String tipoProducto, String direccion) {
         Proveedor pro = new Proveedor();
-        try {
-            Date fecha = new SimpleDateFormat("dd/MM/yyyy").parse(fechaRegistro);
-            pro.setCodigo(codigo);
-            pro.setNombre(nombre);
-            pro.setNomEmpresa(nombreEmpresa);
-            pro.setTelefono(Integer.parseInt(telefono));
-            pro.setCorreo(correo);
-            pro.setFechaRegistro(fecha);
-            pro.setTipoProducto(tipoProducto);
-            pro.setDireccion(direccion);
-        } catch (ParseException ex) {
-            Logger.getLogger(ServicioProveedorImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Date f = new Date(Calendar.getInstance().getTime().getTime());
+        java.sql.Date fecha = new java.sql.Date(f.getTime());
+        pro.setCodigo(codigo);
+        pro.setNombre(nombre);
+        pro.setNomEmpresa(nombreEmpresa);
+        pro.setTelefono(Integer.parseInt(telefono));
+        pro.setCorreo(correo);
+        pro.setFechaRegistro(fecha);
+        pro.setTipoProducto(tipoProducto);
+        pro.setDireccion(direccion);
         return daoPro.Update(pro);
     }
 

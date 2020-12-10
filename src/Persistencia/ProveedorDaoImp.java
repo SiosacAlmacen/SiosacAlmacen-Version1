@@ -7,7 +7,7 @@ package Persistencia;
 
 import Negocio.Proveedor;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -28,7 +28,7 @@ public class ProveedorDaoImp implements ProveedorDao{
         String sql = "select * from proveedor";
         List lista = Operacion.listar(sql);
         if(lista!=null){
-            for (int i = 0; i < lista.size(); i++) {
+            /*for (int i = 0; i < lista.size(); i++) {
                 Object[]fila = (Object[])lista.get(i);
                 Proveedor pro = new Proveedor();
                 pro.setCodigo(fila[0].toString());
@@ -41,14 +41,15 @@ public class ProveedorDaoImp implements ProveedorDao{
                 pro.setDireccion(fila[7].toString());
                 lis.add(pro);
             }
-            return lis;
+            return lis;*/
+            return lista;
         }
         return null;
     }
 
     @Override
     public String Update(Proveedor pro) {
-        String sql = "update proveedor set nom_proveedor="+pro.getNombre()+",nombre_empresa='"+pro.getNomEmpresa()+"',telefono="+pro.getTelefono()+",correo='"+ pro.getCorreo()+"',fecha_registro='"+pro.getFechaRegistro()+"',tipo_producto='"+pro.getTipoProducto()+"',direccion='"+pro.getDireccion()+"' where cod_proveedor='"+pro.getCodigo()+"'";
+        String sql = "update proveedor set nom_proveedor='"+pro.getNombre()+"',nombre_empresa='"+pro.getNomEmpresa()+"',telefono="+pro.getTelefono()+",correo='"+ pro.getCorreo()+"',fecha_registro='"+pro.getFechaRegistro()+"',tipo_producto='"+pro.getTipoProducto()+"',direccion='"+pro.getDireccion()+"' where cod_proveedor='"+pro.getCodigo()+"'";
         return Operacion.ejecutar(sql);    
     }
 

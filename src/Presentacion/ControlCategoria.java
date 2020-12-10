@@ -65,9 +65,9 @@ public class ControlCategoria  implements ActionListener{
     }
     
     public void Create(){
-        if (!"".equals(FrmCat.txtcodigo.getText()) && !"".equals(FrmCat.txtnombre.getText())) {
-            String codigo = FrmCat.txtcodigo.getText();
-            String nombre = FrmCat.txtnombre.getText();
+        String codigo = FrmCat.txtcodigo.getText();
+        String nombre = FrmCat.txtnombre.getText();
+        if (ValidarCampos(codigo,nombre)) {
             String msg = SerCat.Create(codigo,nombre);
             JOptionPane.showMessageDialog(null,msg);
             CleanTable();
@@ -78,6 +78,7 @@ public class ControlCategoria  implements ActionListener{
     }
     
     public void Read(JTable tabla){
+        CentrarCeldas(tabla);
         Tmodel = (DefaultTableModel)tabla.getModel();
         for (int i = 1; i < SerCat.Read().size(); i++){
             Object[] fila = (Object[])SerCat.Read().get(i);
@@ -87,9 +88,9 @@ public class ControlCategoria  implements ActionListener{
     }
     
     public void Update(){
-        if (!"".equals(FrmCat.txtcodigo.getText()) && !"".equals(FrmCat.txtnombre.getText())) {
-            String codigo = FrmCat.txtcodigo.getText();
-            String nombre = FrmCat.txtnombre.getText();
+        String codigo = FrmCat.txtcodigo.getText();
+        String nombre = FrmCat.txtnombre.getText();
+        if (ValidarCampos(codigo,nombre)) {
             String msg = SerCat.Update(codigo, nombre);
             JOptionPane.showMessageDialog(null,msg);
             Clean();
@@ -101,14 +102,15 @@ public class ControlCategoria  implements ActionListener{
     }
     
     public void Delete(){
-        if (!"".equals(FrmCat.txtcodigo.getText()) && !"".equals(FrmCat.txtnombre.getText())) {
-        String codigo = FrmCat.txtcodigo.getText();
-        String msg = SerCat.Delete(codigo);
-        JOptionPane.showMessageDialog(null,msg);
-        CleanTable();
-        Read(FrmCat.tabla);
+        int element = FrmCat.tabla.getSelectedRow();
+        if (element == -1) {
+            JOptionPane.showMessageDialog(null,"Seleccione el registro a eliminar");
         }else{
-            JOptionPane.showMessageDialog(null,"Seleccione un elemento de la lista");
+            String codigo = String.valueOf(FrmCat.tabla.getValueAt(element,0));
+            String msg = SerCat.Delete(codigo);
+            JOptionPane.showMessageDialog(null,msg);
+            CleanTable();
+            Read(FrmCat.tabla);
         }
     }
     
@@ -137,6 +139,11 @@ public class ControlCategoria  implements ActionListener{
             tabla.getColumnModel().getColumn(i).setCellRenderer(dtc);
         }
         
+    }
+    
+    public boolean ValidarCampos(String... texts){ 
+        for(String s : texts) if(s == null || "".equals(s)) return false; 
+        return true; 
     }
   
     public void Clean(){
