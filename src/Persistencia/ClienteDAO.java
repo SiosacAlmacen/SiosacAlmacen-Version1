@@ -5,11 +5,11 @@ import Negocio.*;
 import java.util.List;
 
 
-public interface EmpleadoDAO {
+public interface ClienteDAO {
 
- public int Create(Empleado emp) ;
+ public int Create(Cliente client) ;
  public List Read();
- public int Update(Empleado emp);
+ public int Update(Cliente client);
  public String Delete(String codigo);
- public Empleado validarEmpleado(String user,String pass);
+ public Cliente Find(String codigo);
 }
