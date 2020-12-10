@@ -1,75 +1,86 @@
 
 package Negocio;
 
+import java.util.Date;
 
-public class Empleado {
-   private String codigo;
-   private String nombre;
-   private String apellido;
-   private String especialidad;
-   private String user;
-   private String pass;
 
-    public Empleado() {
+public class OT {
+   private String numOT;
+   private Empleado codEmpleado;
+   private Date fechaInicio;
+   private Date fechaEntrega;
+   private String servicio;
+   private int dias;
+   private String descripcion;
+ 
+
+    public OT() {
     }
 
-    public Empleado(String codigo, String nombre, String apellido, String especialidad, String user, String pass) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.especialidad = especialidad;
-        this.user = user;
-        this.pass = pass;
+    public OT(String numOT, Empleado codEmpleado, Date fechaInicio, Date fechaEntrega, String servicio, int dias, String descripcion) {
+        this.numOT = numOT;
+        this.codEmpleado = codEmpleado;
+        this.fechaInicio = fechaInicio;
+        this.fechaEntrega = fechaEntrega;
+        this.servicio = servicio;
+        this.dias = dias;
+        this.descripcion = descripcion;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getNumOT() {
+        return numOT;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setNumOT(String numOT) {
+        this.numOT = numOT;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Empleado getCodEmpleado() {
+        return codEmpleado;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCodEmpleado(Empleado codEmpleado) {
+        this.codEmpleado = codEmpleado;
     }
 
-    public String getApellido() {
-        return apellido;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
-    public String getEspecialidad() {
-        return especialidad;
+    public Date getFechaEntrega() {
+        return fechaEntrega;
     }
 
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
+    public void setFechaEntrega(Date fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
     }
 
-    public String getUser() {
-        return user;
+    public String getServicio() {
+        return servicio;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
     }
 
-    public String getPass() {
-        return pass;
+    public int getDias() {
+        return dias;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setDias(int dias) {
+        this.dias = dias;
     }
-   
-   
-    
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
 }

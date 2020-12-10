@@ -1,91 +1,139 @@
 
 package Presentacion;
 
-import Persistencia.EmpleadoDAOImp;
+import Persistencia.ClienteDAOImp;
+import Negocio.Cliente;
 import Negocio.Empleado;
+import Persistencia.EmpleadoDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.*;
 import javax.swing.table.*;
+import org.jdesktop.swingx.JXDatePicker;
 
 
-public class ControlEmpleado implements ActionListener{
-    //instanciamos los objetos 
-     EmpleadoDAOImp empDAO=new EmpleadoDAOImp();
-     Empleado emp=new Empleado();
-     FrmEmpleado frmemp=new FrmEmpleado();
-    //establecemos el modelo para el table
-     DefaultTableModel model= new DefaultTableModel();
-     //llamamos a todos los botones de la vista Empleado
-    public ControlEmpleado (FrmEmpleado frmemp)     {
-        this.frmemp = frmemp;
-        this.frmemp.btnleer.addActionListener(this);
-        this.frmemp.btnactualizar.addActionListener(this);
-        this.frmemp.btneditar.addActionListener(this);
-        this.frmemp.btneliminar.addActionListener(this);
-        this.frmemp.btnregistrar.addActionListener(this);
-        this.frmemp.btnlimpiar.addActionListener(this);
-        Read(frmemp.tabla);
-    } 
+public class ControlCliente implements ActionListener{
     
-    //--CONTROLADOR DE BOTONES--
+     ClienteDAOImp clientDAO=new ClienteDAOImp();
+     Cliente client=new Cliente();
+     FrmCliente frmclient=new FrmCliente();
+     
+       private EmpleadoDAO daoEmp;
+
+     
+     
+
+     DefaultTableModel model= new DefaultTableModel();
+    
+    public ControlCliente (FrmCliente frmclient)     {
+        this.frmclient = frmclient;
+        this.frmclient.btnleer.addActionListener(this);
+        this.frmclient.btnactualizar.addActionListener(this);
+        this.frmclient.btneditar.addActionListener(this);
+        this.frmclient.btneliminar.addActionListener(this);
+        this.frmclient.btnregistrar.addActionListener(this);
+        this.frmclient.btnlimpiar.addActionListener(this);
+       
+        Read(frmclient.tablacliente);
+        
+    } 
+
+    
+ 
     @Override
     public void actionPerformed(ActionEvent ae) {
-    if(ae.getSource() == frmemp.btnleer)    {
+    if(ae.getSource() == frmclient.btnleer)    {
        CleanTable();
-       Read(frmemp.tabla);
+       Read(frmclient.tablacliente);
     }
-    if(ae.getSource() == frmemp.btnregistrar)   {
+    if(ae.getSource() == frmclient.btnregistrar)   {
         Create();
         CleanTable();
-        Read(frmemp.tabla);
+        Read(frmclient.tablacliente);
     }
     
-    if(ae.getSource() == frmemp.btneditar)  {
-      Edit();  
+    if(ae.getSource() == frmclient.btneditar)  {
+        try {  
+            Edit();
+        } catch (ParseException ex) {
+            Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    if(ae.getSource() == frmemp.btnactualizar)  {
+    if(ae.getSource() == frmclient.btnactualizar)  {
         Update();
         Clean();
         CleanTable();
-        Read(frmemp.tabla);
+        Read(frmclient.tablacliente);
     }
-    if(ae.getSource() == frmemp.btneliminar)    {
+    if(ae.getSource() == frmclient.btneliminar)    {
        Delete();
        CleanTable();
-       Read(frmemp.tabla);
+       Read(frmclient.tablacliente);
     }
     
-    if(ae.getSource() == frmemp.btnlimpiar )    {
+    if(ae.getSource() == frmclient.btnlimpiar )    {
      Clean();
     }   
-    
-    
-    
-    
     }
     
     
-    //METODOS CRUD
+
      public void Create()  {
   
-    String codigo=frmemp.txtcodigo.getText();
-    String nombre=frmemp.txtnombre.getText();
-    String apellido=frmemp.txtapellido.getText();
-    String especialidad=frmemp.txtespecialidad.getText();
-    String user=frmemp.txtuser.getText();
-    String pass=frmemp.txtpass.getText();
+    String codigo=frmclient.txtcodigo.getText();
+    String nombres=frmclient.txtnombres.getText();
+    String empleado=frmclient.txtempleado.getText();
+    String telefono=frmclient.txttelefono.getText();
+    String correo=frmclient.txtcorreo.getText();
+    String estado=frmclient.txtestado.getText();
+    String medio=frmclient.txtmedio.getText();
+    String empresa=frmclient.txtempresa.getText();
+    String tipod=frmclient.txttipod.getText();
+    String provincia=frmclient.txtprovincia.getText();
+   ZoneId defaultZoneId = ZoneId.systemDefault();
+   LocalDate fechar = null;
+            if (frmclient.getjXDatePickerFR().getDate()!= null){
+                fechar = new java.sql.Date(frmclient.getjXDatePickerFR().getDate().getTime()).toLocalDate();
+            }
+            Date fechard = Date.from(fechar.atStartOfDay(defaultZoneId).toInstant());
+            
+LocalDate fechac = null;
+            if (frmclient.getjXDatePickerFC().getDate()!= null){
+                fechac = new java.sql.Date(frmclient.getjXDatePickerFC().getDate().getTime()).toLocalDate();
+            }
+            Date fechacd = Date.from(fechac.atStartOfDay(defaultZoneId).toInstant());
+    String industria=frmclient.txtindustria.getText();
+    String prioridad=frmclient.txtprioridad.getText();
+    String observacion=frmclient.getjTextArea().getText();
+
     
-    emp.setCodigo(codigo);
-    emp.setNombre(nombre);
-    emp.setApellido(apellido);
-    emp.setEspecialidad(especialidad);
-    emp.setUser(user);
-    emp.setPass(pass);
+    client.setCodCliente(codigo);
+    client.setCodEmpleado(daoEmp.Find(empleado));
+    client.setTelefono(Integer.parseInt(telefono));
+    client.setCorreo(correo);
+    client.setEstado(estado);
+    client.setMedio(medio);
+    client.setEmpresa(empresa);
+    client.setTipoDoc(tipod);
+    client.setProvincia(provincia);
+    client.setFechaRegistro(fechard);
+    client.setFechaContacto(fechacd);
+    client.setIndustria(industria);
+    client.setPrioridad(prioridad);
+    client.setObservacion(observacion);
     
-    int result=empDAO.Create(emp);
+    int result=clientDAO.Create(client);
     if (result == 1) {  
         JOptionPane.showMessageDialog(null,"Registro exitoso");
     }else{  
@@ -100,42 +148,81 @@ public class ControlEmpleado implements ActionListener{
       centrarCeldas(jtable);
         
      model = (DefaultTableModel)jtable.getModel();
-     List<Empleado> lista= empDAO.Read();
+     List<Cliente> lista= clientDAO.Read();
      Object[] object= new Object[6];
         for (int i = 0; i < lista.size(); i++) {
-            object[0]=lista.get(i).getCodigo();
-            object[1]=lista.get(i).getNombre();
-            object[2]=lista.get(i).getApellido();
-            object[3]=lista.get(i).getEspecialidad();
-            object[4]=lista.get(i).getUser();
-            object[5]=lista.get(i).getPass();
+            object[0]=lista.get(i).getCodCliente();
+            object[1]=lista.get(i).getNombres();
+            object[2]=lista.get(i).getCodEmpleado();
+            object[3]=lista.get(i).getTelefono();
+            object[4]=lista.get(i).getCorreo();
+            object[5]=lista.get(i).getEstado();
+            object[6]=lista.get(i).getMedio();
+            object[7]=lista.get(i).getEmpresa();
+            object[8]=lista.get(i).getTipoDoc();
+            object[9]=lista.get(i).getObservacion();
+            object[10]=lista.get(i).getFechaRegistro();
+            object[11]=lista.get(i).getFechaContacto();
+            object[12]=lista.get(i).getIndustria();
+            object[13]=lista.get(i).getPrioridad();
+            object[14]=lista.get(i).getProvincia();
+          
             model.addRow(object);
         }
-       frmemp.tabla.setModel(model);
+       frmclient.tablacliente.setModel(model);
     }
     
     public void Update()  {
-        if (frmemp.txtcodigo.getText().equals("")) {
+        if (frmclient.txtcodigo.getText().equals("")) {
             JOptionPane.showMessageDialog(null,"Elija un registro a actualizar");
         }else   {
             
         }
     
-    String codigo=frmemp.txtcodigo.getText();
-    String nombre=frmemp.txtnombre.getText();
-    String apellido=frmemp.txtapellido.getText();
-    String especialidad=frmemp.txtespecialidad.getText();
-    String user=frmemp.txtuser.getText();
-    String pass=frmemp.txtpass.getText();
+    String codigo=frmclient.txtcodigo.getText();
+    String nombres=frmclient.txtnombres.getText();
+    String empleado=frmclient.txtempleado.getText();
+    String telefono=frmclient.txttelefono.getText();
+    String correo=frmclient.txtcorreo.getText();
+    String estado=frmclient.txtestado.getText();
+    String medio=frmclient.txtmedio.getText();
+    String empresa=frmclient.txtempresa.getText();
+    String tipod=frmclient.txttipod.getText();
+    String provincia=frmclient.txtprovincia.getText();
+   ZoneId defaultZoneId = ZoneId.systemDefault();
+   LocalDate fechar = null;
+            if (frmclient.getjXDatePickerFR().getDate()!= null){
+                fechar = new java.sql.Date(frmclient.getjXDatePickerFR().getDate().getTime()).toLocalDate();
+            }
+            Date fechard = Date.from(fechar.atStartOfDay(defaultZoneId).toInstant());
+            
+LocalDate fechac = null;
+            if (frmclient.getjXDatePickerFC().getDate()!= null){
+                fechac = new java.sql.Date(frmclient.getjXDatePickerFC().getDate().getTime()).toLocalDate();
+            }
+            Date fechacd = Date.from(fechac.atStartOfDay(defaultZoneId).toInstant());
+    String industria=frmclient.txtindustria.getText();
+    String prioridad=frmclient.txtprioridad.getText();
+    String observacion=frmclient.getjTextArea().getText();
+
     
-    emp.setCodigo(codigo);
-    emp.setNombre(nombre);
-    emp.setApellido(apellido);
-    emp.setEspecialidad(especialidad);
-    emp.setUser(user);
-    emp.setPass(pass);
+    client.setCodCliente(codigo);
+    client.setCodEmpleado(daoEmp.Find(empleado));
+    client.setTelefono(Integer.parseInt(telefono));
+    client.setCorreo(correo);
+    client.setEstado(estado);
+    client.setMedio(medio);
+    client.setEmpresa(empresa);
+    client.setTipoDoc(tipod);
+    client.setProvincia(provincia);
+    client.setFechaRegistro(fechard);
+    client.setFechaContacto(fechacd);
+    client.setIndustria(industria);
+    client.setPrioridad(prioridad);
+    client.setObservacion(observacion);
     
-    int result=empDAO.Update(emp);
+    
+    int result=clientDAO.Update(client);
     
     if (result == 1) {  
         JOptionPane.showMessageDialog(null,"Actualizado");
@@ -147,69 +234,97 @@ public class ControlEmpleado implements ActionListener{
     
     public void Delete()  {
     
-        int element = frmemp.tabla.getSelectedRow();
+        int element = frmclient.tablacliente.getSelectedRow();
         if (element == -1) {
-            JOptionPane.showMessageDialog(frmemp,"Seleccione el registro a eliminar");
+            JOptionPane.showMessageDialog(frmclient,"Seleccione el registro a eliminar");
         }else   {
-            String codigo=(String)frmemp.tabla.getValueAt(element,0);
-            empDAO.Delete(codigo);
-            JOptionPane.showMessageDialog(frmemp, "Registro eliminado");
+            String codigo=(String)frmclient.tablacliente.getValueAt(element,0);
+            clientDAO.Delete(codigo);
+            JOptionPane.showMessageDialog(frmclient, "Registro eliminado");
         }
     }
     
     
-    
-    
-    //METODOS ADICIONALES
     
     void centrarCeldas(JTable jtable)   {
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         
-        for (int i = 0; i < frmemp.tabla.getColumnCount(); i++) {
-            frmemp.tabla.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        for (int i = 0; i < frmclient.tablacliente.getColumnCount(); i++) {
+            frmclient.tablacliente.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
     }
     
-    //metodo para limpiar
+ 
     void CleanTable() { 
-        for (int i = 0; i < frmemp.tabla.getRowCount(); i++) {
+        for (int i = 0; i < frmclient.tablacliente.getRowCount(); i++) {
             model.removeRow(i);
             i = i-1;
             
         }
     }
     
-    void Edit(){    
-        int element= frmemp.tabla.getSelectedRow();
+    void Edit() throws ParseException{    
+        int element= frmclient.tablacliente.getSelectedRow();
         if (element == -1) {
             JOptionPane.showMessageDialog(null,"Seleccione un registro a editar");
         }else   {
-         String elementCOD=(String) frmemp.tabla.getValueAt(element,0);
-         String elementNOM=(String) frmemp.tabla.getValueAt(element,1);
-         String elementAPE=(String) frmemp.tabla.getValueAt(element,2);
-         String elementESP=(String) frmemp.tabla.getValueAt(element,3);
-         String elementUSER=(String) frmemp.tabla.getValueAt(element,4);
-         String elementPASS=(String) frmemp.tabla.getValueAt(element,5);
-         frmemp.txtcodigo.setText(""+elementCOD);
-         frmemp.txtnombre.setText(""+elementNOM);
-         frmemp.txtapellido.setText(""+elementAPE);
-         frmemp.txtespecialidad.setText(""+elementESP);
-         frmemp.txtuser.setText(""+elementUSER);
-         frmemp.txtpass.setText(""+elementPASS);
-         
+         String elementCOD=(String) frmclient.tablacliente.getValueAt(element,0);
+         String elementNOMS=(String) frmclient.tablacliente.getValueAt(element,1);
+         String elementEMP=(String) frmclient.tablacliente.getValueAt(element,2);
+         String elementTLF=(String) frmclient.tablacliente.getValueAt(element,3);
+         String elementCORR=(String) frmclient.tablacliente.getValueAt(element,4);
+         String elementEST=(String) frmclient.tablacliente.getValueAt(element,5);
+         String elementMED=(String) frmclient.tablacliente.getValueAt(element,6);
+         String elementEMPR=(String) frmclient.tablacliente.getValueAt(element,7);
+         String elementTIPD=(String) frmclient.tablacliente.getValueAt(element,8);
+         String elementOBS=(String) frmclient.tablacliente.getValueAt(element,9);
+         String elementFECR=(String) frmclient.tablacliente.getValueAt(element,10);
+         DateFormat fechaHora = new SimpleDateFormat("yyyy/MM/dd");
+         Date fechard = fechaHora.parse(elementFECR);
+         String elementFECC=(String) frmclient.tablacliente.getValueAt(element,11);
+         Date fechacd = fechaHora.parse(elementFECR);
+         String elementINDUS=(String) frmclient.tablacliente.getValueAt(element,12);
+         String elementPRIO=(String) frmclient.tablacliente.getValueAt(element,13);
+         String elementPROV=(String) frmclient.tablacliente.getValueAt(element,14);   
+         frmclient.txtcodigo.setText(""+elementCOD);
+         frmclient.txtnombres.setText(""+elementNOMS);
+         frmclient.txtempleado.setText(""+elementEMP);
+         frmclient.txttelefono.setText(""+elementTLF);
+         frmclient.txtcorreo.setText(""+elementCORR);
+         frmclient.txtestado.setText(""+elementEST);
+          frmclient.txtmedio.setText(""+elementMED);
+         frmclient.txtempresa.setText(""+elementEMPR);
+         frmclient.txttipod.setText(""+elementTIPD);
+         frmclient.getjTextArea().setText(""+elementOBS);
+         frmclient.getjXDatePickerFR().setDate(fechard);
+         frmclient.getjXDatePickerFR().setDate(fechacd);
+         frmclient.txtindustria.setText(""+elementINDUS);
+         frmclient.txtprioridad.setText(""+elementPRIO);
+         frmclient.txtprovincia.setText(""+elementPROV);
         }
     }
     
     void Clean()    {
-     frmemp.txtcodigo.setText("");
-     frmemp.txtapellido.setText("");
-     frmemp.txtnombre.setText("");
-     frmemp.txtespecialidad.setText("");
-     frmemp.txtuser.setText("");
-     frmemp.txtpass.setText("");
-     frmemp.txtcodigo.requestFocus();
+     frmclient.txtcodigo.setText("");
+     frmclient.txtnombres.setText("");
+     frmclient.txtempleado.setText("");
+     frmclient.txttelefono.setText("");
+     frmclient.txtcorreo.setText("");
+     frmclient.txtestado.setText("");
+      frmclient.txtmedio.setText("");
+     frmclient.txtempresa.setText("");
+     frmclient.txttipod.setText("");
+     frmclient.getjTextArea().setText("");
+     frmclient.getjXDatePickerFC().setDate(Date.from(Instant.now()));
+     frmclient.getjXDatePickerFR().setDate(Date.from(Instant.now()));
+     frmclient.txtindustria.setText("");
+     frmclient.txtprioridad.setText("");
+     frmclient.txtprovincia.setText("");
+     frmclient.txtcodigo.requestFocus();
      
     }
+    
+    
     
 }

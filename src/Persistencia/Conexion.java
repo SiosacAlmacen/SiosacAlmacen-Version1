@@ -7,7 +7,7 @@ public class Conexion {
     static Connection cn=null;
     static String URL="jdbc:mysql://localhost/siosac_bd?useTimezone=true&serverTimezone=UTC";
      static String USUARIO="root";
-    static String PASSWORD="root";
+    static String PASSWORD=" ";
     public static Connection getConexion()  {
         
         try {
