@@ -98,7 +98,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-47,0,0,7,38"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-47,0,0,4,-101"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
@@ -116,7 +116,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="40" y="10" width="1830" height="280"/>
+          <AbsoluteConstraints x="0" y="0" width="1180" height="280"/>
         </Constraint>
       </Constraints>
 
@@ -137,8 +137,8 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtcodigo" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                      <Component id="jXDatePickerFR" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
+                                      <Component id="txtnumero" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                      <Component id="jXDatePickerFE" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -147,8 +147,8 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtnombres" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                                      <Component id="txtmedio" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <Component id="txtempleado" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <Component id="txtservicio" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -160,8 +160,8 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtempresa" min="-2" pref="250" max="-2" attributes="0"/>
-                                              <Component id="jXDatePickerFC" min="-2" pref="242" max="-2" attributes="0"/>
+                                              <Component id="txtdias" min="-2" pref="250" max="-2" attributes="0"/>
+                                              <Component id="jXDatePickerFI" min="-2" pref="242" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -206,18 +206,18 @@
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtcodigo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="txtnumero" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtnombres" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="txtempleado" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jXDatePickerFR" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jXDatePickerFE" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtmedio" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="txtservicio" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -228,7 +228,7 @@
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txtempresa" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="txtdias" min="-2" pref="30" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -244,7 +244,7 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jXDatePickerFC" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jXDatePickerFI" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
@@ -315,7 +315,7 @@
             <Property name="text" type="java.lang.String" value="DESCRIPCI&#xd3;N:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtcodigo">
+        <Component class="javax.swing.JTextField" name="txtnumero">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Demi ITC" size="14" style="0"/>
@@ -326,7 +326,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtmedio">
+        <Component class="javax.swing.JTextField" name="txtservicio">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Demi ITC" size="14" style="0"/>
@@ -337,7 +337,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtnombres">
+        <Component class="javax.swing.JTextField" name="txtempleado">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Demi ITC" size="14" style="0"/>
@@ -497,7 +497,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="txtaobservacion">
+            <Component class="javax.swing.JTextArea" name="txtadescripcion">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
@@ -505,9 +505,9 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePickerFR">
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePickerFE">
         </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePickerFC">
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePickerFI">
         </Component>
         <Component class="javax.swing.JButton" name="btnbuscar">
           <Properties>
@@ -516,7 +516,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtempresa">
+        <Component class="javax.swing.JTextField" name="txtdias">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Demi ITC" size="14" style="0"/>
@@ -617,7 +617,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="280" width="1830" height="480"/>
+          <AbsoluteConstraints x="0" y="280" width="1180" height="480"/>
         </Constraint>
       </Constraints>
 
@@ -625,18 +625,18 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="1668" max="-2" attributes="0"/>
-                  <EmptySpace pref="56" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="1084" max="-2" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="370" max="-2" attributes="0"/>
-                  <EmptySpace pref="53" max="32767" attributes="0"/>
+                  <EmptySpace pref="60" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -649,25 +649,17 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablacliente">
+            <Component class="javax.swing.JTable" name="tablaOT">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="15" rowCount="0">
+                  <Table columnCount="7" rowCount="0">
                     <Column editable="true" title="codigo" type="java.lang.Object"/>
-                    <Column editable="true" title="nombres" type="java.lang.Object"/>
                     <Column editable="true" title="empleado" type="java.lang.Object"/>
-                    <Column editable="true" title="tel&#xe9;fono" type="java.lang.Object"/>
-                    <Column editable="true" title="correo" type="java.lang.Object"/>
-                    <Column editable="true" title="estado" type="java.lang.Object"/>
-                    <Column editable="true" title="medio" type="java.lang.Object"/>
-                    <Column editable="true" title="empresa" type="java.lang.Object"/>
-                    <Column editable="true" title="tipo de documento" type="java.lang.Object"/>
-                    <Column editable="true" title="observacion" type="java.lang.Object"/>
-                    <Column editable="true" title="fecha de registro" type="java.lang.Object"/>
-                    <Column editable="true" title="fecha de contacto" type="java.lang.Object"/>
-                    <Column editable="true" title="industria" type="java.lang.Object"/>
-                    <Column editable="true" title="prioridad" type="java.lang.Object"/>
-                    <Column editable="true" title="provincia" type="java.lang.Object"/>
+                    <Column editable="true" title="fecha de inicio" type="java.lang.Object"/>
+                    <Column editable="true" title="fecha de entrega" type="java.lang.Object"/>
+                    <Column editable="true" title="servicio" type="java.lang.Object"/>
+                    <Column editable="true" title="dias" type="java.lang.Object"/>
+                    <Column editable="true" title="descripcion" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
