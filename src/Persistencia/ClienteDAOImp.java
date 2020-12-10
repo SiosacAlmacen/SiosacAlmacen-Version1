@@ -27,8 +27,7 @@ public class ClienteDAOImp implements ClienteDAO {
          cn=con.getConexion();
          pst=cn.prepareStatement(sql);
          
-         
-         //SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+     
          DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
          String fechaR = sdf.format(client.getFechaRegistro());
          String fechaC = sdf.format(client.getFechaContacto());

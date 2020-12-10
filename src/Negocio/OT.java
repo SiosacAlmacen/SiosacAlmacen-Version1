@@ -5,7 +5,7 @@ import java.util.Date;
 
 
 public class OT {
-   private String numOT;
+   private int numOT;
    private Empleado codEmpleado;
    private Date fechaInicio;
    private Date fechaEntrega;
@@ -17,7 +17,7 @@ public class OT {
     public OT() {
     }
 
-    public OT(String numOT, Empleado codEmpleado, Date fechaInicio, Date fechaEntrega, String servicio, int dias, String descripcion) {
+    public OT(int numOT, Empleado codEmpleado, Date fechaInicio, Date fechaEntrega, String servicio, int dias, String descripcion) {
         this.numOT = numOT;
         this.codEmpleado = codEmpleado;
         this.fechaInicio = fechaInicio;
@@ -27,11 +27,11 @@ public class OT {
         this.descripcion = descripcion;
     }
 
-    public String getNumOT() {
+    public int getNumOT() {
         return numOT;
     }
 
-    public void setNumOT(String numOT) {
+    public void setNumOT(int numOT) {
         this.numOT = numOT;
     }
 
@@ -82,5 +82,7 @@ public class OT {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    
 
 }
