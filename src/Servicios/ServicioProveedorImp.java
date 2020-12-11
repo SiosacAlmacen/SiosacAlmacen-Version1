@@ -8,6 +8,7 @@ package Servicios;
 import Negocio.Proveedor;
 import Persistencia.ProveedorDao;
 import Persistencia.ProveedorDaoImp;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,19 +31,24 @@ public class ServicioProveedorImp implements ServicioProveedor{
     
     @Override
     public String Create(String codigo, String nombre, String nombreEmpresa, String telefono, String correo, String fechaRegistro, String tipoProducto, String direccion) {
-        Proveedor pro = new Proveedor();
-        Date f = new Date(Calendar.getInstance().getTime().getTime());
-        java.sql.Date fecha = new java.sql.Date(f.getTime());
         
-        pro.setCodigo(codigo);
-        pro.setNombre(nombre);
-        pro.setNomEmpresa(nombreEmpresa);
-        pro.setTelefono(Integer.parseInt(telefono));
-        pro.setCorreo(correo);
-        pro.setFechaRegistro(fecha);
-        pro.setTipoProducto(tipoProducto);
-        pro.setDireccion(direccion);
-        return daoPro.Create(pro);
+        try {
+            Proveedor pro = new Proveedor();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+            Date p = format.parse(fechaRegistro);
+            java.sql.Date fecha = new java.sql.Date(p.getTime());
+            pro.setCodigo(codigo);
+            pro.setNombre(nombre);
+            pro.setNomEmpresa(nombreEmpresa);
+            pro.setTelefono(Integer.parseInt(telefono));
+            pro.setCorreo(correo);
+            pro.setFechaRegistro(fecha);
+            pro.setTipoProducto(tipoProducto);
+            pro.setDireccion(direccion);
+            return daoPro.Create(pro);
+        } catch (ParseException ex) {
+            return "Ocurrio un error inesperado";
+        }
     }
 
     @Override
@@ -52,18 +58,23 @@ public class ServicioProveedorImp implements ServicioProveedor{
 
     @Override
     public String Update(String codigo, String nombre, String nombreEmpresa, String telefono, String correo, String fechaRegistro, String tipoProducto, String direccion) {
-        Proveedor pro = new Proveedor();
-        Date f = new Date(Calendar.getInstance().getTime().getTime());
-        java.sql.Date fecha = new java.sql.Date(f.getTime());
-        pro.setCodigo(codigo);
-        pro.setNombre(nombre);
-        pro.setNomEmpresa(nombreEmpresa);
-        pro.setTelefono(Integer.parseInt(telefono));
-        pro.setCorreo(correo);
-        pro.setFechaRegistro(fecha);
-        pro.setTipoProducto(tipoProducto);
-        pro.setDireccion(direccion);
-        return daoPro.Update(pro);
+        try {
+            Proveedor pro = new Proveedor();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+            Date p = format.parse(fechaRegistro);
+            java.sql.Date fecha = new java.sql.Date(p.getTime());
+            pro.setCodigo(codigo);
+            pro.setNombre(nombre);
+            pro.setNomEmpresa(nombreEmpresa);
+            pro.setTelefono(Integer.parseInt(telefono));
+            pro.setCorreo(correo);
+            pro.setFechaRegistro(fecha);
+            pro.setTipoProducto(tipoProducto);
+            pro.setDireccion(direccion);
+            return daoPro.Update(pro);
+        } catch (ParseException ex) {
+            return "Ocurrio un error inesperado";
+        } 
     }
 
     @Override

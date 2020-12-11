@@ -5,7 +5,7 @@
  */
 package Presentacion;
 
-import Presentacion.ControlEmpleado;
+import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 
 /**
@@ -22,11 +22,16 @@ public class FrmMaterial extends javax.swing.JFrame {
     public JTextArea getTxtadescripcion() {
         return txtdescripcion;
     }
+    
+    public JComboBox getCategoria(){
+        return jCmbcategoria;
+    }
     public FrmMaterial() {
         initComponents();
         this.setLocationRelativeTo(this);
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,7 +50,6 @@ public class FrmMaterial extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtcodigo = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
-        txtcategoria = new javax.swing.JTextField();
         txtunidad = new javax.swing.JTextField();
         btnregistrar = new javax.swing.JButton();
         btnleer = new javax.swing.JButton();
@@ -62,6 +66,7 @@ public class FrmMaterial extends javax.swing.JFrame {
         txtmancho = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtdescripcion = new javax.swing.JTextArea();
+        jCmbcategoria = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -92,12 +97,14 @@ public class FrmMaterial extends javax.swing.JFrame {
 
         txtcodigo.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         txtcodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtcodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcodigoActionPerformed(evt);
+            }
+        });
 
         txtnombre.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         txtnombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        txtcategoria.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
-        txtcategoria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtunidad.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         txtunidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -144,6 +151,11 @@ public class FrmMaterial extends javax.swing.JFrame {
 
         txtmalto.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         txtmalto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtmalto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtmaltoKeyTyped(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
         jLabel8.setText("MEDIDA ALTO:");
@@ -161,10 +173,22 @@ public class FrmMaterial extends javax.swing.JFrame {
 
         txtmancho.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         txtmancho.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtmancho.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtmanchoKeyTyped(evt);
+            }
+        });
 
         txtdescripcion.setColumns(20);
+        txtdescripcion.setLineWrap(true);
         txtdescripcion.setRows(5);
         jScrollPane2.setViewportView(txtdescripcion);
+
+        jCmbcategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCmbcategoriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,9 +240,9 @@ public class FrmMaterial extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtstock)
+                                    .addComponent(txtstock, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                                     .addComponent(txtunidad)
-                                    .addComponent(txtcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jCmbcategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(11, 11, 11)
@@ -261,9 +285,9 @@ public class FrmMaterial extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(10, 10, 10)
+                            .addComponent(jLabel3)
+                            .addComponent(jCmbcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtstock, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -346,6 +370,28 @@ public class FrmMaterial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtempresaActionPerformed
 
+    private void txtmaltoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmaltoKeyTyped
+        char caracter = evt.getKeyChar();
+        if(((caracter < '0') ||(caracter > '9')) &&(caracter != '\b')&& (caracter != '.' || txtmalto.getText().contains("."))){
+            evt.consume();  
+        }
+    }//GEN-LAST:event_txtmaltoKeyTyped
+
+    private void txtmanchoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmanchoKeyTyped
+        char caracter = evt.getKeyChar();
+        if(((caracter < '0') ||(caracter > '9')) &&(caracter != '\b')&& (caracter != '.' || txtmancho.getText().contains("."))){
+            evt.consume();  
+        }
+    }//GEN-LAST:event_txtmanchoKeyTyped
+
+    private void txtcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcodigoActionPerformed
+
+    private void jCmbcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbcategoriaActionPerformed
+        
+    }//GEN-LAST:event_jCmbcategoriaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -353,6 +399,7 @@ public class FrmMaterial extends javax.swing.JFrame {
       FrmMaterial FrmMat = new FrmMaterial();
       ControlMaterial ConProv = new ControlMaterial(FrmMat);
       FrmMat.setVisible(true);
+      
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -362,6 +409,7 @@ public class FrmMaterial extends javax.swing.JFrame {
     public javax.swing.JButton btnleer;
     public javax.swing.JButton btnlimpiar;
     public javax.swing.JButton btnregistrar;
+    private javax.swing.JComboBox<String> jCmbcategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -377,7 +425,6 @@ public class FrmMaterial extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     public javax.swing.JTable tabla;
-    public javax.swing.JTextField txtcategoria;
     public javax.swing.JTextField txtcodigo;
     private javax.swing.JTextArea txtdescripcion;
     public javax.swing.JTextField txtmalto;

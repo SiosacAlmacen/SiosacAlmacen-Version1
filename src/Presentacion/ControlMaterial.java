@@ -6,7 +6,10 @@
 
 package Presentacion;
 
+import Negocio.Categoria;
 import Negocio.Material;
+import Servicios.ServicioCategoria;
+import Servicios.ServicioCategoriaImp;
 import Servicios.ServicioMaterial;
 import Servicios.ServicioMaterialImp;
 import java.awt.event.ActionEvent;
@@ -22,9 +25,11 @@ import javax.swing.table.DefaultTableModel;
  * @author ander
  */
 public class ControlMaterial implements ActionListener{
-
+    
+    ServicioCategoria SerCat = new ServicioCategoriaImp();
     ServicioMaterial SerMat = new ServicioMaterialImp();
     Material mat = new Material();
+  
     
     FrmMaterial FrmMat = new FrmMaterial();
     DefaultTableModel Tmodel = new DefaultTableModel();
@@ -38,6 +43,7 @@ public class ControlMaterial implements ActionListener{
         this.FrmMat.btnregistrar.addActionListener(this);
         this.FrmMat.btnlimpiar.addActionListener(this);
         Read(FrmMat.tabla);
+        Categorias();
     }
     
     @Override
@@ -65,7 +71,7 @@ public class ControlMaterial implements ActionListener{
     
     public void Create(){
         String codigo = FrmMat.txtcodigo.getText();
-        String categoria = FrmMat.txtcategoria.getText();
+        String categoria = Id();
         String nombre = FrmMat.txtnombre.getText();
         String stock = FrmMat.txtstock.getText();
         String descripcion = FrmMat.getTxtadescripcion().getText();
@@ -82,6 +88,7 @@ public class ControlMaterial implements ActionListener{
             
             JOptionPane.showMessageDialog(null,"Complete todos los campos");
         }
+        
     }
     
     public void Read(JTable tabla){
@@ -92,11 +99,13 @@ public class ControlMaterial implements ActionListener{
             Tmodel.addRow(fila);
         }
         FrmMat.tabla.setModel(Tmodel);
+       
     }
+    
     
     public void Update(){
         String codigo = FrmMat.txtcodigo.getText();
-        String categoria = FrmMat.txtcategoria.getText();
+        String categoria = Id();
         String nombre = FrmMat.txtnombre.getText();
         String stock = FrmMat.txtstock.getText();
         String descripcion = FrmMat.getTxtadescripcion().getText();
@@ -105,7 +114,7 @@ public class ControlMaterial implements ActionListener{
         String ancho = FrmMat.txtmancho.getText();
         
         if (ValidarCampos(codigo,categoria,nombre,stock,descripcion,unidad,alto,ancho)){
-            String msg = SerMat.Update(codigo, categoria , nombre, stock, descripcion, unidad, alto, ancho);
+            String msg = SerMat.Update(codigo, categoria, nombre, stock, descripcion, unidad, alto, ancho);
             JOptionPane.showMessageDialog(null,msg);
             CleanTable();
             Read(FrmMat.tabla);
@@ -128,13 +137,29 @@ public class ControlMaterial implements ActionListener{
         }
     }
     
+    public void Categorias(){
+        FrmMat.getCategoria().removeAllItems();
+        for (int i = 1; i < SerCat.Read().size(); i++){
+            Object[] fila = (Object[])SerCat.Read().get(i);
+            Integer id = Integer.parseInt(String.valueOf(fila[0]));
+            String nombre = String.valueOf(fila[1]);
+            FrmMat.getCategoria().addItem(new Categoria(id, nombre));
+        }
+    }
+    
+    public String Id(){
+        Categoria cat = (Categoria)FrmMat.getCategoria().getSelectedItem();
+        String id = String.valueOf(cat.getCodigo());
+        return id;
+        }
+    
     public void Edit(){
         int element = FrmMat.tabla.getSelectedRow();
         if(element == -1){
             JOptionPane.showMessageDialog(null, "Selecciones un registro a editar");
         }else{
             FrmMat.txtcodigo.setText(""+ FrmMat.tabla.getValueAt(element, 0));
-            FrmMat.txtcategoria.setText(""+ FrmMat.tabla.getValueAt(element, 1));
+            FrmMat.getCategoria().getModel().setSelectedItem(SerCat.Find(String.valueOf(FrmMat.tabla.getValueAt(element, 1))));
             FrmMat.txtnombre.setText(""+ FrmMat.tabla.getValueAt(element, 2));
             FrmMat.txtstock.setText(""+ FrmMat.tabla.getValueAt(element, 3));
             FrmMat.getTxtadescripcion().setText(""+ FrmMat.tabla.getValueAt(element, 4));
@@ -169,7 +194,7 @@ public class ControlMaterial implements ActionListener{
     
     public void Clean(){
         FrmMat.txtcodigo.setText("");
-        FrmMat.txtcategoria.setText("");
+        FrmMat.getCategoria().setSelectedIndex(0);
         FrmMat.txtnombre.setText("");
         FrmMat.txtstock.setText("");
         FrmMat.getTxtadescripcion().setText("");

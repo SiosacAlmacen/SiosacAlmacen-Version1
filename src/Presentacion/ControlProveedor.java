@@ -10,8 +10,11 @@ import Servicios.ServicioProveedor;
 import Servicios.ServicioProveedorImp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -39,6 +42,7 @@ public class ControlProveedor implements ActionListener{
         this.FrmProv.btnregistrar.addActionListener(this);
         this.FrmProv.btnlimpiar.addActionListener(this);
         Read(FrmProv.tabla);
+        FrmProv.getFecha().setDate(new Date());
     }
     
     @Override
@@ -52,7 +56,14 @@ public class ControlProveedor implements ActionListener{
             Create();
         }
         if (e.getSource() == FrmProv.btneditar) {
-            Edit();
+           
+            try {
+                Edit();
+            } catch (ParseException ex) {
+                Logger.getLogger(ControlProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
         }
         if (e.getSource() == FrmProv.btnactualizar) {
             Update();
@@ -73,13 +84,13 @@ public class ControlProveedor implements ActionListener{
         String correo = FrmProv.txtcorreo.getText();
         String tipo = FrmProv.txt_tipo.getText();
         String direccion = FrmProv.txtdireccion.getText();
+        String fecha = fecha();
         if (ValidarCampos(codigo,nombre,empresa,telefono,correo,tipo,direccion)){
-            String msg = SerProv.Create(codigo,nombre,empresa,telefono,correo,fecha(),tipo, direccion);
+            String msg = SerProv.Create(codigo,nombre,empresa,telefono,correo,fecha,tipo, direccion);
             JOptionPane.showMessageDialog(null,msg);
             CleanTable();
             Read(FrmProv.tabla);
         }else{
-            
             JOptionPane.showMessageDialog(null,"Complete todos los campos");
         }
     }
@@ -102,8 +113,9 @@ public class ControlProveedor implements ActionListener{
         String correo = FrmProv.txtcorreo.getText();
         String tipo = FrmProv.txt_tipo.getText();
         String direccion = FrmProv.txtdireccion.getText();
+        String fecha = fecha();
         if (ValidarCampos(codigo,nombre,empresa,telefono,correo,tipo,direccion)){
-            String msg = SerProv.Update(codigo,nombre,empresa,telefono,correo,fecha(),tipo, direccion);
+            String msg = SerProv.Update(codigo,nombre,empresa,telefono,correo,fecha,tipo, direccion);
             JOptionPane.showMessageDialog(null,msg);
             Clean();
             CleanTable();
@@ -126,7 +138,7 @@ public class ControlProveedor implements ActionListener{
         }
     }
     
-    public void Edit(){
+    public void Edit() throws ParseException{
         int element = FrmProv.tabla.getSelectedRow();
         if(element == -1){
             JOptionPane.showMessageDialog(null, "Selecciones un registro a editar");
@@ -136,6 +148,8 @@ public class ControlProveedor implements ActionListener{
             FrmProv.txtempresa.setText(""+FrmProv.tabla.getValueAt(element, 2));
             FrmProv.txttelefono.setText(""+FrmProv.tabla.getValueAt(element, 3));
             FrmProv.txtcorreo.setText(""+FrmProv.tabla.getValueAt(element, 4));
+            Date fecha = new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(FrmProv.tabla.getValueAt(element, 5)));
+            FrmProv.getFecha().setDate(fecha);
             FrmProv.txt_tipo.setText(""+FrmProv.tabla.getValueAt(element, 6));
             FrmProv.txtdireccion.setText(""+FrmProv.tabla.getValueAt(element, 7));
         }
@@ -164,8 +178,14 @@ public class ControlProveedor implements ActionListener{
     }
     
     public String fecha(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(new Date());
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            return sdf.format(FrmProv.getFecha().getDate());
+        } catch (Exception e) {
+            return "Ingrese una fecha";
+        }
+        
+       
     }
     
     public void Clean(){
@@ -174,6 +194,7 @@ public class ControlProveedor implements ActionListener{
         FrmProv.txtempresa.setText("");
         FrmProv.txttelefono.setText("");
         FrmProv.txtcorreo.setText("");
+        FrmProv.getFecha().setDate(new Date());
         FrmProv.txt_tipo.setText("");
         FrmProv.txtdireccion.setText("");
         FrmProv.txtcodigo.requestFocus();
