@@ -9,7 +9,7 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
-import java.util.Date;
+import java.sql.Date;
 
 
 public class ClienteDAOImp implements ClienteDAO {
@@ -19,9 +19,10 @@ public class ClienteDAOImp implements ClienteDAO {
  ResultSet rs;
  int result = 0;
  String quitar=null;
+
     @Override
-    public int Create(Cliente client) {
-       
+    public String Create(Cliente client) {
+        String msg="tgfertger";
      String sql="Insert into cliente (cod_cliente,cod_empleado,nombres,telefono,correo,estado,medio,empresa,tipo_doc,observacion,fecha_registro,fecha_contacto,industria,prioridad,provincia) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
      try {
          cn=con.getConexion();
@@ -48,24 +49,17 @@ public class ClienteDAOImp implements ClienteDAO {
             pst.setString(14,client.getPrioridad());
              pst.setString(15,client.getProvincia());
             result=pst.executeUpdate();
-            if (result ==1) {
-             return 1;
-            }else   {
-             return 0;
-            }
-
-          } catch (Exception e) {
+          } catch (SQLException E) {
+              msg = E.getLocalizedMessage();
           }
-     return result;
+     return msg;
     }
 
     @Override
     public List Read() {
           List<Cliente> datos=new ArrayList<>();
      
-     String sql = "Select * from cliente client "
-                + "join empleado emp "
-                + "on client.cod_empleado = emp.cod_empleado ORDER BY client.cod_empleado";
+     String sql = "Select * from cliente ";
      try {
          cn=con.getConexion();
          pst=cn.prepareStatement(sql);
@@ -73,7 +67,7 @@ public class ClienteDAOImp implements ClienteDAO {
          while (rs.next()) {           
             Cliente client=new Cliente();
             client.setCodCliente(rs.getString(1));
-            client.setCodEmpleado(new Empleado(rs.getString("emp.cod_empleado"), rs.getString("emp.nombre"), rs.getString("emp.apellido"), rs.getString("emp.especialidad"), rs.getString("emp.usuario"), rs.getString("emp.contraseña")));
+            client.setCodEmpleado(new Empleado(rs.getString(2)));
             client.setNombres(rs.getString(3));
             client.setTelefono(rs.getInt(4));
             client.setCorreo(rs.getString(5));

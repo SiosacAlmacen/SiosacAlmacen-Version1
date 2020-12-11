@@ -12,7 +12,16 @@ public class Empleado {
 
     public Empleado() {
     }
-
+    
+    public Empleado(String codigo){
+        this.codigo = codigo;
+    }
+    
+    public Empleado(String codigo, String nombre){
+        this.codigo = codigo;
+        this.nombre = nombre;
+    }
+    
     public Empleado(String codigo, String nombre, String apellido, String especialidad, String user, String pass) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -69,7 +78,18 @@ public class Empleado {
     public void setPass(String pass) {
         this.pass = pass;
     }
+
+    @Override
+    public String toString() {
+        return getCodigo() ;
+    }
+    
    
+    
+    
+    
+    
    
+    
     
 }

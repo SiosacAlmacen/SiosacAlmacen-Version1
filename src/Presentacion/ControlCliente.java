@@ -1,10 +1,10 @@
-
 package Presentacion;
 
 import Persistencia.ClienteDAOImp;
 import Negocio.Cliente;
 import Negocio.Empleado;
 import Persistencia.EmpleadoDAO;
+import Persistencia.EmpleadoDAOImp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -13,7 +13,8 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
+import java.sql.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,12 +24,15 @@ import javax.swing.table.*;
 
 
 public class ControlCliente implements ActionListener{
-
+     
      ClienteDAOImp clientDAO=new ClienteDAOImp();
+     EmpleadoDAO daoEmp = new EmpleadoDAOImp();
+     
      Cliente client=new Cliente();
+     Empleado emp = new Empleado();
+     
      FrmCliente frmclient=new FrmCliente();
-
-       private EmpleadoDAO daoEmp;
+     
 
 
 
@@ -45,7 +49,7 @@ public class ControlCliente implements ActionListener{
         this.frmclient.btnlimpiar.addActionListener(this);
 
         Read(frmclient.tablacliente);
-
+        Empleados();
     }
 
 
@@ -90,56 +94,52 @@ public class ControlCliente implements ActionListener{
 
      public void Create()  {
 
-    String codigo=frmclient.txtcodigo.getText();
-    String nombres=frmclient.txtnombres.getText();
-    String empleado=frmclient.txtempleado.getText();
-    String telefono=frmclient.txttelefono.getText();
-    String correo=frmclient.txtcorreo.getText();
-    String estado=frmclient.txtestado.getText();
-    String medio=frmclient.txtmedio.getText();
-    String empresa=frmclient.txtempresa.getText();
-    String tipod=frmclient.txttipod.getText();
-    String provincia=frmclient.txtprovincia.getText();
-   ZoneId defaultZoneId = ZoneId.systemDefault();
-   LocalDate fechar = null;
-            if (frmclient.getjXDatePickerFR().getDate()!= null){
-                fechar = new java.sql.Date(frmclient.getjXDatePickerFR().getDate().getTime()).toLocalDate();
-            }
-            Date fechard = Date.from(fechar.atStartOfDay(defaultZoneId).toInstant());
+        String codigo=frmclient.txtcodigo.getText();
+        String nombres=frmclient.txtnombres.getText();
+        String empleado=String.valueOf(frmclient.getcomboemp().getSelectedItem()); 
+        String telefono=String.valueOf(frmclient.txttelefono.getText());
+        String correo= String.valueOf(frmclient.txtcorreo.getText());
+        String estado=String.valueOf(frmclient.txtestado.getText());
+        String medio=String.valueOf(frmclient.txtmedio.getText());
+        String empresa=String.valueOf(frmclient.txtempresa.getText());
+        String tipod=String.valueOf(frmclient.txttipod.getText());
+        String provincia=String.valueOf(frmclient.txtprovincia.getText());
+        
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        LocalDate fechar = null;
+        if (frmclient.getjXDatePickerFR().getDate()!= null){
+            fechar = new java.sql.Date(frmclient.getjXDatePickerFR().getDate().getTime()).toLocalDate();
+        }
+        Date fechard = (Date) Date.from(fechar.atStartOfDay(defaultZoneId).toInstant());
 
-LocalDate fechac = null;
-            if (frmclient.getjXDatePickerFC().getDate()!= null){
-                fechac = new java.sql.Date(frmclient.getjXDatePickerFC().getDate().getTime()).toLocalDate();
-            }
-            Date fechacd = Date.from(fechac.atStartOfDay(defaultZoneId).toInstant());
-    String industria=frmclient.txtindustria.getText();
-    String prioridad=frmclient.txtprioridad.getText();
-    String observacion=frmclient.getjTextArea().getText();
-
-
-    client.setCodCliente(codigo);
-    client.setCodEmpleado(daoEmp.Find(empleado));
-    client.setTelefono(Integer.parseInt(telefono));
-    client.setCorreo(correo);
-    client.setEstado(estado);
-    client.setMedio(medio);
-    client.setEmpresa(empresa);
-    client.setTipoDoc(tipod);
-    client.setProvincia(provincia);
-    client.setFechaRegistro(fechard);
-    client.setFechaContacto(fechacd);
-    client.setIndustria(industria);
-    client.setPrioridad(prioridad);
-    client.setObservacion(observacion);
-
-    int result=clientDAO.Create(client);
-    if (result == 1) {
-        JOptionPane.showMessageDialog(null,"Registro exitoso");
-    }else{
-        JOptionPane.showMessageDialog(null,"No se registró");
-    }
+        LocalDate fechac = null;
+        if (frmclient.getjXDatePickerFC().getDate()!= null){
+            fechac = new java.sql.Date(frmclient.getjXDatePickerFC().getDate().getTime()).toLocalDate();
+        }
+        Date fechacd = (Date) Date.from(fechac.atStartOfDay(defaultZoneId).toInstant());
+        
+        String industria=String.valueOf(frmclient.txtindustria.getText());
+        String prioridad=String.valueOf(frmclient.txtprioridad.getText());
+        String observacion=String.valueOf(frmclient.getjTextArea().getText());
 
 
+        client.setCodCliente(codigo);
+        client.setCodEmpleado(daoEmp.Find(empleado));
+        client.setTelefono(Integer.parseInt(telefono));
+        client.setCorreo(correo);
+        client.setEstado(estado);
+        client.setMedio(medio);
+        client.setEmpresa(empresa);
+        client.setTipoDoc(tipod);
+        client.setProvincia(provincia);
+        client.setFechaRegistro(fechard);
+        client.setFechaContacto(fechacd);
+        client.setIndustria(industria);
+        client.setPrioridad(prioridad);
+        client.setObservacion(observacion);
+
+        
+         System.out.println(clientDAO.Create(client));
     }
 
 
@@ -148,7 +148,7 @@ LocalDate fechac = null;
 
      model = (DefaultTableModel)jtable.getModel();
      List<Cliente> lista= clientDAO.Read();
-     Object[] object= new Object[6];
+     Object[] object= new Object[15];
         for (int i = 0; i < lista.size(); i++) {
             object[0]=lista.get(i).getCodCliente();
             object[1]=lista.get(i).getNombres();
@@ -170,7 +170,23 @@ LocalDate fechac = null;
         }
        frmclient.tablacliente.setModel(model);
     }
-
+    
+    public void Empleados(){
+        frmclient.getcomboemp().removeAllItems();
+        List<Empleado> lista= daoEmp.Read();
+        for (int i = 0; i < daoEmp.Read().size(); i++){
+            String cod = lista.get(i).getCodigo();
+            String nom = lista.get(i).getNombre();
+            frmclient.getcomboemp().addItem(new Empleado(cod, nom));
+        }
+    }
+    
+    public String Id(){
+        Empleado emp = (Empleado)frmclient.getcomboemp().getSelectedItem();
+        String id = String.valueOf(emp.getCodigo());
+        return id;
+    }
+    
     public void Update()  {
         if (frmclient.txtcodigo.getText().equals("")) {
             JOptionPane.showMessageDialog(null,"Elija un registro a actualizar");
@@ -178,57 +194,57 @@ LocalDate fechac = null;
 
         }
 
-    String codigo=frmclient.txtcodigo.getText();
-    String nombres=frmclient.txtnombres.getText();
-    String empleado=frmclient.txtempleado.getText();
-    String telefono=frmclient.txttelefono.getText();
-    String correo=frmclient.txtcorreo.getText();
-    String estado=frmclient.txtestado.getText();
-    String medio=frmclient.txtmedio.getText();
-    String empresa=frmclient.txtempresa.getText();
-    String tipod=frmclient.txttipod.getText();
-    String provincia=frmclient.txtprovincia.getText();
-   ZoneId defaultZoneId = ZoneId.systemDefault();
-   LocalDate fechar = null;
-            if (frmclient.getjXDatePickerFR().getDate()!= null){
-                fechar = new java.sql.Date(frmclient.getjXDatePickerFR().getDate().getTime()).toLocalDate();
-            }
-            Date fechard = Date.from(fechar.atStartOfDay(defaultZoneId).toInstant());
+        String codigo=frmclient.txtcodigo.getText();
+        String nombres=frmclient.txtnombres.getText();
+        String empleado=String.valueOf(frmclient.getcomboemp().getSelectedItem()); 
+        String telefono=frmclient.txttelefono.getText();
+        String correo=frmclient.txtcorreo.getText();
+        String estado=frmclient.txtestado.getText();
+        String medio=frmclient.txtmedio.getText();
+        String empresa=frmclient.txtempresa.getText();
+        String tipod=frmclient.txttipod.getText();
+        String provincia=frmclient.txtprovincia.getText();
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        LocalDate fechar = null;
+        if (frmclient.getjXDatePickerFR().getDate()!= null){
+            fechar = new java.sql.Date(frmclient.getjXDatePickerFR().getDate().getTime()).toLocalDate();
+        }
+        Date fechard = (Date) Date.from(fechar.atStartOfDay(defaultZoneId).toInstant());
 
-LocalDate fechac = null;
-            if (frmclient.getjXDatePickerFC().getDate()!= null){
-                fechac = new java.sql.Date(frmclient.getjXDatePickerFC().getDate().getTime()).toLocalDate();
-            }
-            Date fechacd = Date.from(fechac.atStartOfDay(defaultZoneId).toInstant());
-    String industria=frmclient.txtindustria.getText();
-    String prioridad=frmclient.txtprioridad.getText();
-    String observacion=frmclient.getjTextArea().getText();
-
-
-    client.setCodCliente(codigo);
-    client.setCodEmpleado(daoEmp.Find(empleado));
-    client.setTelefono(Integer.parseInt(telefono));
-    client.setCorreo(correo);
-    client.setEstado(estado);
-    client.setMedio(medio);
-    client.setEmpresa(empresa);
-    client.setTipoDoc(tipod);
-    client.setProvincia(provincia);
-    client.setFechaRegistro(fechard);
-    client.setFechaContacto(fechacd);
-    client.setIndustria(industria);
-    client.setPrioridad(prioridad);
-    client.setObservacion(observacion);
+        LocalDate fechac = null;
+        if (frmclient.getjXDatePickerFC().getDate()!= null){
+            fechac = new java.sql.Date(frmclient.getjXDatePickerFC().getDate().getTime()).toLocalDate();
+        }
+        Date fechacd = (Date) Date.from(fechac.atStartOfDay(defaultZoneId).toInstant());   
+        String industria=frmclient.txtindustria.getText();
+        String prioridad=frmclient.txtprioridad.getText();
+        String observacion=frmclient.getjTextArea().getText();
 
 
-    int result=clientDAO.Update(client);
+        client.setCodCliente(codigo);
+        client.setCodEmpleado(daoEmp.Find(empleado));
+        client.setTelefono(Integer.parseInt(telefono));
+        client.setCorreo(correo);
+        client.setEstado(estado);
+        client.setMedio(medio);
+        client.setEmpresa(empresa);
+        client.setTipoDoc(tipod);
+        client.setProvincia(provincia);
+        client.setFechaRegistro(fechard);
+        client.setFechaContacto(fechacd);
+        client.setIndustria(industria);
+        client.setPrioridad(prioridad);
+        client.setObservacion(observacion); 
 
-    if (result == 1) {
-        JOptionPane.showMessageDialog(null,"Actualizado");
-    }else{
-        JOptionPane.showMessageDialog(null,"No se actualizó");
-    }
-    CleanTable();
+
+        int result=clientDAO.Update(client);
+
+        if (result == 1) {
+            JOptionPane.showMessageDialog(null,"Actualizado");
+        }else{
+            JOptionPane.showMessageDialog(null,"No se actualizó");
+        }
+        CleanTable();
     }
 
     public void Delete()  {
@@ -270,7 +286,7 @@ LocalDate fechac = null;
         }else   {
          String elementCOD=(String) frmclient.tablacliente.getValueAt(element,0);
          String elementNOMS=(String) frmclient.tablacliente.getValueAt(element,1);
-         String elementEMP=(String) frmclient.tablacliente.getValueAt(element,2);
+         String elementEMP=String.valueOf(frmclient.tablacliente.getValueAt(element,2));
          String elementTLF=(String) frmclient.tablacliente.getValueAt(element,3);
          String elementCORR=(String) frmclient.tablacliente.getValueAt(element,4);
          String elementEST=(String) frmclient.tablacliente.getValueAt(element,5);
@@ -280,15 +296,15 @@ LocalDate fechac = null;
          String elementOBS=(String) frmclient.tablacliente.getValueAt(element,9);
          String elementFECR=(String) frmclient.tablacliente.getValueAt(element,10);
          DateFormat fechaHora = new SimpleDateFormat("yyyy/MM/dd");
-         Date fechard = fechaHora.parse(elementFECR);
+         Date fechard = (Date) fechaHora.parse(elementFECR);
          String elementFECC=(String) frmclient.tablacliente.getValueAt(element,11);
-         Date fechacd = fechaHora.parse(elementFECR);
+         Date fechacd = (Date) fechaHora.parse(elementFECR);
          String elementINDUS=(String) frmclient.tablacliente.getValueAt(element,12);
          String elementPRIO=(String) frmclient.tablacliente.getValueAt(element,13);
          String elementPROV=(String) frmclient.tablacliente.getValueAt(element,14);
          frmclient.txtcodigo.setText(""+elementCOD);
          frmclient.txtnombres.setText(""+elementNOMS);
-         frmclient.txtempleado.setText(""+elementEMP);
+         frmclient.getcomboemp().setSelectedItem(daoEmp.Find(elementEMP));
          frmclient.txttelefono.setText(""+elementTLF);
          frmclient.txtcorreo.setText(""+elementCORR);
          frmclient.txtestado.setText(""+elementEST);
@@ -302,12 +318,13 @@ LocalDate fechac = null;
          frmclient.txtprioridad.setText(""+elementPRIO);
          frmclient.txtprovincia.setText(""+elementPROV);
         }
+        System.out.println(Id());
     }
 
     void Clean()    {
      frmclient.txtcodigo.setText("");
      frmclient.txtnombres.setText("");
-     frmclient.txtempleado.setText("");
+     frmclient.getcomboemp().setSelectedIndex(0);
      frmclient.txttelefono.setText("");
      frmclient.txtcorreo.setText("");
      frmclient.txtestado.setText("");

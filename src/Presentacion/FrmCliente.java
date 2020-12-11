@@ -2,6 +2,7 @@
 package Presentacion;
 
 import Presentacion.ControlCliente;
+import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import org.jdesktop.swingx.JXDatePicker;
 
@@ -19,6 +20,10 @@ public class FrmCliente extends javax.swing.JFrame {
 
     public JTextArea getjTextArea() {
         return txtaobservacion;
+    }
+    
+    public JComboBox getcomboemp(){
+        return jComboemp;
     }
 
 
@@ -40,6 +45,10 @@ public class FrmCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablacliente = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,7 +59,6 @@ public class FrmCliente extends javax.swing.JFrame {
         txtcodigo = new javax.swing.JTextField();
         txtmedio = new javax.swing.JTextField();
         txtnombres = new javax.swing.JTextField();
-        txtempleado = new javax.swing.JTextField();
         txtestado = new javax.swing.JTextField();
         btnregistrar = new javax.swing.JButton();
         btnleer = new javax.swing.JButton();
@@ -83,12 +91,42 @@ public class FrmCliente extends javax.swing.JFrame {
         jXDatePickerFC = new org.jdesktop.swingx.JXDatePicker();
         btnbuscar = new javax.swing.JButton();
         txtempresa = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablacliente = new javax.swing.JTable();
+        jComboemp = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Registros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Eras Demi ITC", 1, 18))); // NOI18N
+
+        tablacliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "codigo", "nombres", "empleado", "teléfono", "correo", "estado", "medio", "empresa", "tipo de documento", "observacion", "fecha de registro", "fecha de contacto", "industria", "prioridad", "provincia"
+            }
+        ));
+        jScrollPane1.setViewportView(tablacliente);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1668, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 1830, 480));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,9 +157,6 @@ public class FrmCliente extends javax.swing.JFrame {
 
         txtnombres.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         txtnombres.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        txtempleado.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
-        txtempleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtestado.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         txtestado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -158,6 +193,11 @@ public class FrmCliente extends javax.swing.JFrame {
 
         txtbuscar.setFont(new java.awt.Font("Eras Demi ITC", 0, 12)); // NOI18N
         txtbuscar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbuscarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
         jLabel8.setText("EMPLEADO:");
@@ -209,6 +249,11 @@ public class FrmCliente extends javax.swing.JFrame {
 
         txtprioridad.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         txtprioridad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtprioridad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtprioridadActionPerformed(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Eras Demi ITC", 1, 12)); // NOI18N
         jLabel22.setText("OBSERVACIÓN:");
@@ -216,6 +261,12 @@ public class FrmCliente extends javax.swing.JFrame {
         txtaobservacion.setColumns(20);
         txtaobservacion.setRows(5);
         jScrollPane2.setViewportView(txtaobservacion);
+
+        jXDatePickerFR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jXDatePickerFRActionPerformed(evt);
+            }
+        });
 
         btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilitarios/buscador (2).png"))); // NOI18N
 
@@ -254,7 +305,7 @@ public class FrmCliente extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboemp, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel9))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -315,7 +366,7 @@ public class FrmCliente extends javax.swing.JFrame {
                         .addComponent(btnbuscar)
                         .addGap(18, 18, 18)
                         .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(468, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(170, 170, 170)
                 .addComponent(btnregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -345,8 +396,8 @@ public class FrmCliente extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel9)
-                                .addComponent(txtempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel19))
+                                .addComponent(jLabel19)
+                                .addComponent(jComboemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -413,42 +464,24 @@ public class FrmCliente extends javax.swing.JFrame {
                         .addGap(49, 49, 49))))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1830, 280));
+        jScrollPane3.setViewportView(jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Registros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Eras Demi ITC", 1, 18))); // NOI18N
-
-        tablacliente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "codigo", "nombres", "empleado", "teléfono", "correo", "estado", "medio", "empresa", "tipo de documento", "observacion", "fecha de registro", "fecha de contacto", "industria", "prioridad", "provincia"
-            }
-        ));
-        jScrollPane1.setViewportView(tablacliente);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1668, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 1830, 480));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1850, 280));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jXDatePickerFRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXDatePickerFRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jXDatePickerFRActionPerformed
+
+    private void txtbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtbuscarActionPerformed
+
+    private void txtprioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtprioridadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtprioridadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -469,6 +502,7 @@ public class FrmCliente extends javax.swing.JFrame {
     public javax.swing.JButton btnleer;
     public javax.swing.JButton btnlimpiar;
     public javax.swing.JButton btnregistrar;
+    private javax.swing.JComboBox<String> jComboemp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -491,6 +525,7 @@ public class FrmCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerFC;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerFR;
     public javax.swing.JTable tablacliente;
@@ -498,7 +533,6 @@ public class FrmCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtbuscar;
     public javax.swing.JTextField txtcodigo;
     public javax.swing.JTextField txtcorreo;
-    public javax.swing.JTextField txtempleado;
     public javax.swing.JTextField txtempresa;
     public javax.swing.JTextField txtestado;
     public javax.swing.JTextField txtindustria;

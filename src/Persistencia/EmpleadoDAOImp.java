@@ -42,7 +42,7 @@ public class EmpleadoDAOImp implements EmpleadoDAO {
 
     @Override
     public List Read() {
-          List<Empleado> datos=new ArrayList<>();
+     List<Empleado> datos=new ArrayList<>();
      //preparamos la sentencia
      String sql="Select * from empleado";
      try {
@@ -111,7 +111,19 @@ public class EmpleadoDAOImp implements EmpleadoDAO {
           }
      return quitar; 
     }
-
+    
+    public Empleado Find(String codigo) {
+        String sql = "Select * from empleado where cod_empleado ='"+codigo+"'";
+        Object[]fila = Operacion.buscar(sql);
+        if(fila != null){
+            Empleado emp = new Empleado();
+            emp.setCodigo((fila[0].toString()));
+            emp.setNombre(fila[1].toString());
+            return emp;
+        }
+        return null;
+    }
+    
     @Override
     public Empleado validarEmpleado(String user, String pass) {
            List lista=Read();
