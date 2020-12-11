@@ -51,7 +51,7 @@ public class MaterialDaoImp implements MaterialDao{
     @Override
     public String Update(Material mat) {
         
-        String sql = "update material set cod_categoria="+mat.getCategoria().getCodigo()+",nombre_material='"+mat.getNombre() +"',stock="+mat.getStock()+",descripcion='"+ mat.getDescripcion()+"',unidad='"+mat.getUnidad()+"',medidaAlto="+mat.getMedidaAlto()+",medidaAncho="+mat.getMedidaAncho()+" where cod_categoria='"+mat.getCodigo()+"'";
+        String sql = "update material set cod_categoria="+mat.getCategoria().getCodigo()+",nombre_material='"+mat.getNombre() +"',stock="+mat.getStock()+",descripcion='"+ mat.getDescripcion()+"',unidad='"+mat.getUnidad()+"',medidaAlto="+mat.getMedidaAlto()+",medidaAncho="+mat.getMedidaAncho()+" where cod_material='"+mat.getCodigo()+"'";
         return Operacion.ejecutar(sql);
         
     }
